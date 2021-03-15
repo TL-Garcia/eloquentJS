@@ -28,3 +28,5 @@ class Vec {
         return Math.sqrt(this.x**2 + this.y**2)
     }
 }
+
+module.exports = Vec
