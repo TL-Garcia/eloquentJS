@@ -23,12 +23,6 @@ describe('groups can add new elements', () => {
         expect(newGroup.length).toBe(1)
         expect(hasElement).toBe(true)
     })
-
-    test('but will throw error if the element is already a member', () => {
-        const newGroup = Group.from([10, 20])
-        const fn = () => newGroup.add(10)
-        expect(fn).toThrow()
-    })
 })
 
 describe('groups can delete elements', () => {

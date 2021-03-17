@@ -1,18 +1,12 @@
-const removeDuplicates = (iterable) => {
-    return iterable.filter((e, i) => i === iterable.indexOf(e))
-}
-
 module.exports = class Group {
     constructor() {
         this.members = [] 
     }
 
     add(member) {
-        if (this.members.includes(member)) {
-            throw new Error('Group already contains member')
-        }
-
-        this.members.push(member)
+	if (!this.has(member)) {
+	    this.members.push(member)
+	}
     }
 
     delete(match) {
@@ -33,7 +27,6 @@ module.exports = class Group {
     }
 
     static from(iterable) {
-        const cleanIterable = removeDuplicates(iterable)
         const group = new Group()
         cleanIterable.forEach(m => group.add(m))
 
