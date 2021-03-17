@@ -1,4 +1,4 @@
-module.exports = class Group {
+ class Group {
     constructor() {
         this.members = [] 
     }
@@ -28,8 +28,35 @@ module.exports = class Group {
 
     static from(iterable) {
         const group = new Group()
-        cleanIterable.forEach(m => group.add(m))
+        iterable.forEach(m => group.add(m))
 
         return group
+    }
+
+    [Symbol.iterator]() {
+	return new GroupIterator(this)
+    } 
+}
+
+class GroupIterator {
+    constructor(group) {
+	this.group = group
+	this.counter = 0
+    }
+
+    next() {
+	if (this.counter >= this.group.length) {
+	    return {
+		done: true
+	    }
+	}
+
+	const value = this.group.members[counter]
+	this.counter++
+
+	return {
+	    value,
+	    done: false
+	}
     }
 }
